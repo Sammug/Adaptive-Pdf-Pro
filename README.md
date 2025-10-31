@@ -1,418 +1,334 @@
-# Android PDF Library - Comprehensive Development Plan
+# AdaptivePdfPro
 
-## 1. Library Overview
+A comprehensive Android library for PDF viewing, generation, and manipulation with extensive customization options including branding, theming, navigation, and data overlay features.
 
-### Purpose
-A feature-rich Android library for PDF viewing, manipulation, and sharing with extensive customization options including branding, theming, and advanced navigation.
+## About
 
-### Core Technologies
-- **Language**: Kotlin
-- **Min SDK**: 21 (Android 5.0)
-- **Target SDK**: 34 (Android 14)
-- **Architecture**: MVVM with Repository pattern
-- **Dependency Injection**: Hilt/Dagger2
+AdaptivePdfPro is a feature-rich Android PDF library that provides:
+- 📄 Advanced PDF viewing with smooth rendering
+- 🎨 Extensive theming and branding customization
+- 🧭 Multiple navigation modes and controls
+- 📊 Data overlay capabilities for dynamic content
+- 🎯 Built with Kotlin and Jetpack Compose
+- 🚀 Optimized performance with lazy loading
 
-## 2. Architecture Design
+## Installation
 
-### Module Structure
+### Step 1: Add JitPack Repository
+
+Add the JitPack repository to your root `build.gradle` or `settings.gradle`:
+
+```gradle
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
-pdf-library/
-├── core/                 # Core PDF rendering engine
-├── ui/                   # UI components and views
-├── customization/        # Theming and branding
-├── navigation/           # Page navigation logic
-├── data/                 # Data models and repositories
-├── utils/                # Utility classes
-├── annotations/          # PDF annotations support
-└── export/              # Export, share, download features
+
+For newer projects using `settings.gradle`:
+```gradle
+dependencyResolutionManagement {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
 
-### Design Patterns
-1. **Builder Pattern**: For configuration and initialization
-2. **Factory Pattern**: For creating PDF viewers with different configs
-3. **Observer Pattern**: For page change notifications
-4. **Strategy Pattern**: For different rendering strategies
-5. **Decorator Pattern**: For adding features dynamically
+### Step 2: Add the Dependency
 
-## 3. Feature Specifications
+Add the dependency to your app module's `build.gradle`:
 
-### 3.1 PDF Viewing Core
-- **Rendering Engine**
-  - Native PDF rendering using PdfRenderer (Android 5.0+)
-  - Fallback to third-party library (MuPDF/PDFium)
-  - Multi-threaded rendering for performance
-  - Memory-efficient page caching
-  
-- **Zoom & Pan**
-  - Pinch-to-zoom with smooth animation
-  - Double-tap zoom
-  - Fit-to-width, fit-to-height, fit-to-page options
-  - Min/max zoom limits
-  - Pan gesture support
+```gradle
+dependencies {
+    implementation 'com.github.yourusername:AdaptivePdfPro:1.0.0'
+}
+```
 
-### 3.2 Navigation Features
-- **Page Navigation**
-  - Swipe navigation (horizontal/vertical)
-  - Jump to specific page
-  - Page thumbnails grid view
-  - Continuous scroll mode
-  - Page-by-page mode
-  - Dual-page mode for tablets
-  
-- **Navigation UI Components**
-  - Bottom navigation bar with page slider
-  - Floating page indicator
-  - Table of contents (TOC) drawer
-  - Bookmarks panel
-  - Recent pages history
-  - Search results navigation
-  
-- **Advanced Navigation**
-  - Go to first/last page shortcuts
-  - Previous/Next chapter navigation
-  - Bookmark-based navigation
-  - Search result navigation
-  - Link navigation within PDF
+## Setup & Usage
 
-### 3.3 Branding & Customization
+### Basic PDF Viewing
 
-#### Logo Integration
-- **Header Logo**
-  - Position: Top-left, Top-center, Top-right
-  - Size: Customizable (px or dp)
-  - Opacity: 0-100%
-  - Click action: Customizable callback
-  
-- **Watermark Logo**
-  - Position: Center, corners, or custom coordinates
-  - Repeat pattern option
-  - Transparency level
-  - Rotation angle
-  
-- **Footer Logo**
-  - Position: Bottom corners or center
-  - Auto-hide on scroll option
-
-#### Titles & Subtitles
-- **Header Configuration**
-  - Main title (PDF name or custom)
-  - Subtitle (author, date, or custom)
-  - Font family selection
-  - Font size and weight
-  - Text color and shadow
-  - Background color/gradient
-  - Auto-hide on scroll
-
-#### Page Headers/Footers
-- **Custom Headers**
-  - Company name
-  - Document title
-  - Chapter name
-  - Custom text
-  
-- **Custom Footers**
-  - Page numbers (various formats)
-  - Date/time stamps
-  - Copyright text
-  - Custom messages
-
-### 3.4 Data Listing & Display
-
-#### Page Data Overlay
-- **Data Tables**
-  - Display tabular data on pages
-  - Customizable table styling
-  - Pagination within tables
-  - Sort and filter options
-  
-- **Info Panels**
-  - Floating info cards
-  - Slide-in panels
-  - Tooltip overlays
-  - Collapsible sections
-  
-- **Metadata Display**
-  - Document properties
-  - Page information
-  - File statistics
-  - Custom metadata fields
-
-### 3.5 Theming & Colors
-
-#### Color Customization
-- **Theme Presets**
-  - Light theme
-  - Dark theme
-  - Sepia theme
-  - High contrast theme
-  - Custom theme builder
-  
-- **Customizable Elements**
-  - Background colors (viewer, toolbar, panels)
-  - Text colors (primary, secondary, accent)
-  - Icon colors
-  - Selection highlight color
-  - Link colors
-  - Border colors
-  - Shadow colors
-  
-- **Dynamic Theming**
-  - Day/Night auto-switch
-  - User preference saving
-  - Theme import/export
-  - Per-document themes
-
-### 3.6 Advanced Features
-
-#### Annotations & Markup
-- Highlight text
-- Add notes/comments
-- Draw shapes and lines
-- Add text boxes
-- Sticky notes
-- Stamps and signatures
-- Save annotations to PDF
-
-#### Search Functionality
-- Full-text search
-- Search highlighting
-- Search history
-- Advanced search (regex, case-sensitive)
-- Search within annotations
-
-#### Export & Sharing
-- **Export Options**
-  - Save to device storage
-  - Export as images (PNG/JPEG)
-  - Export selected pages
-  - Export with annotations
-  
-- **Sharing Options**
-  - Share via installed apps
-  - Email integration
-  - Cloud storage upload
-  - Generate shareable links
-  - QR code generation
-
-#### Performance Features
-- Lazy loading
-- Progressive rendering
-- Background pre-loading
-- Intelligent caching
-- Memory management
-- Battery optimization
-
-## 4. API Design
-
-### 4.1 Initialization
 ```kotlin
-PdfLibrary.init(context)
-    .setLicenseKey("your-license-key")
-    .setDefaultTheme(PdfTheme.LIGHT)
-    .enableCrashReporting(true)
-    .build()
-```
+import com.androidstuff.adaptivepdfpro.core.PdfViewer
 
-### 4.2 Basic Usage
-```kotlin
+// Simple PDF viewing
 PdfViewer.with(context)
-    .load(pdfUri)
-    .setConfig(pdfConfig)
-    .setListener(pdfListener)
+    .load(pdfUri) // URI, File, or Asset path
     .show()
 ```
 
-### 4.3 Advanced Configuration
+### Using Composable
+
+```kotlin
+import com.androidstuff.adaptivepdfpro.compose.PdfViewerComposable
+
+@Composable
+fun MyScreen() {
+    PdfViewerComposable(
+        pdfUri = myPdfUri,
+        config = PdfConfig.Builder()
+            .setInitialPage(0)
+            .setScrollDirection(ScrollDirection.VERTICAL)
+            .build()
+    )
+}
+```
+
+### Advanced Configuration
+
 ```kotlin
 val config = PdfConfig.Builder()
-    .setTheme(customTheme)
+    .setInitialPage(0)
+    .setScrollDirection(ScrollDirection.VERTICAL)
+    .setZoomEnabled(true)
+    .setPinchToZoomEnabled(true)
+    .setDoubleTapToZoomEnabled(true)
+    .setMaxZoom(3.0f)
+    .setMinZoom(0.5f)
+    .setFitToWidthEnabled(true)
+    .build()
+
+val brandingConfig = BrandingConfig.Builder()
+    .setHeaderLogo(R.drawable.logo)
+    .setLogoPosition(LogoPosition.TOP_LEFT)
+    .setLogoSize(40.dp)
+    .setTitle("Document Title")
+    .setSubtitle("Company Name")
+    .setWatermarkEnabled(true)
+    .setWatermarkText("CONFIDENTIAL")
+    .build()
+
+val navigationConfig = NavigationConfig.Builder()
+    .setNavigationMode(NavigationMode.SWIPE)
+    .setShowPageIndicator(true)
+    .setShowBottomBar(true)
+    .setShowThumbnails(true)
+    .setPageTransitionAnimation(PageAnimation.SLIDE)
+    .build()
+
+val themeConfig = ThemeConfig.Builder()
+    .setPrimaryColor(Color.Blue)
+    .setBackgroundColor(Color.White)
+    .setToolbarColor(Color.DarkGray)
+    .setPageIndicatorColor(Color.Blue)
+    .setUseDarkMode(false)
+    .build()
+
+// Apply all configurations
+PdfViewer.with(context)
+    .load(pdfUri)
+    .setConfig(config)
     .setBranding(brandingConfig)
     .setNavigation(navigationConfig)
-    .setFeatures(featuresConfig)
-    .build()
+    .setTheme(themeConfig)
+    .show()
 ```
 
-### 4.4 Branding Configuration
+### PDF Generation
+
 ```kotlin
-val branding = BrandingConfig.Builder()
-    .setLogo(logoDrawable, LogoPosition.TOP_LEFT)
-    .setTitle("Document Title", titleStyle)
-    .setSubtitle("Subtitle Text", subtitleStyle)
-    .setWatermark(watermarkConfig)
-    .build()
+import com.androidstuff.adaptivepdfpro.compose.PdfGenerator
+
+val pdfGenerator = PdfGenerator(context)
+
+// Generate PDF from composable content
+pdfGenerator.generatePdf(
+    content = { 
+        // Your composable content here
+        MyComposableContent()
+    },
+    fileName = "generated_document.pdf",
+    pageSize = PageSize.A4
+)
 ```
 
-## 5. UI Components
+### Data Overlay
 
-### 5.1 Main Viewer Layout
-```
-┌─────────────────────────────────┐
-│ [Logo] Title      [Menu Icons]  │ <- Toolbar
-├─────────────────────────────────┤
-│          Subtitle               │ <- Subtitle Bar
-├─────────────────────────────────┤
-│                                 │
-│                                 │
-│         PDF Content             │ <- Viewer Area
-│                                 │
-│                                 │
-├─────────────────────────────────┤
-│ Page 1 of 10  [====----] [▶]   │ <- Navigation Bar
-└─────────────────────────────────┘
-```
-
-### 5.2 Custom Views
-- PdfViewerView (main viewer)
-- PdfThumbnailView (page grid)
-- PdfNavigationBar
-- PdfToolbar
-- PdfSearchBar
-- PdfAnnotationToolbar
-- PdfBookmarkPanel
-- PdfTableOfContents
-
-## 6. Data Models
-
-### Core Models
 ```kotlin
-- PdfDocument
-- PdfPage
-- PdfConfig
-- PdfTheme
-- BrandingConfig
-- NavigationConfig
-- AnnotationData
-- BookmarkData
-- SearchResult
+val dataConfig = PageDataConfig.Builder()
+    .addOverlayData(
+        pageNumber = 1,
+        data = listOf(
+            DataItem("Title", "Value"),
+            DataItem("Date", "2024-01-01")
+        )
+    )
+    .setOverlayPosition(OverlayPosition.TOP_RIGHT)
+    .setOverlayStyle(
+        backgroundColor = Color.White.copy(alpha = 0.9f),
+        textColor = Color.Black,
+        borderColor = Color.Gray
+    )
+    .build()
+
+PdfViewer.with(context)
+    .load(pdfUri)
+    .setDataConfig(dataConfig)
+    .show()
 ```
 
-## 7. Testing Strategy
+### Event Listeners
 
-### Unit Tests
-- PDF rendering logic
-- Navigation algorithms
-- Search functionality
-- Data parsing
-
-### Integration Tests
-- UI component interactions
-- Feature combinations
-- Performance benchmarks
-
-### UI Tests
-- User flow scenarios
-- Gesture recognition
-- Theme switching
-- Configuration changes
-
-## 8. Performance Optimization
-
-### Rendering Optimization
-- Use hardware acceleration
-- Implement view recycling
-- Optimize bitmap usage
-- Implement progressive loading
-
-### Memory Management
-- Page cache limits
-- Bitmap recycling
-- Weak references for large objects
-- Memory monitoring
-
-### Battery Optimization
-- Reduce rendering frequency
-- Optimize background tasks
-- Implement doze mode compatibility
-
-## 9. Security Considerations
-
-- PDF password protection support
-- Secure file handling
-- DRM support (optional)
-- Content protection (disable screenshots)
-- Watermarking for security
-
-## 10. Localization
-
-- Multi-language support
-- RTL language support
-- Locale-specific formatting
-- Translatable UI strings
-
-## 11. Documentation
-
-### Developer Documentation
-- API reference
-- Integration guide
-- Customization examples
-- Troubleshooting guide
-
-### Sample App
-- Showcase all features
-- Code examples
-- Best practices
-- Performance tips
-
-## 12. Distribution
-
-### Publishing Options
-- Maven Central
-- JitPack
-- GitHub Packages
-- Private repository
-
-### Versioning Strategy
-- Semantic versioning
-- Backward compatibility
-- Migration guides
-- Deprecation policy
-
-## 13. Timeline Estimation
-
-### Phase 1: Core (4 weeks)
-- Basic PDF rendering
-- Simple navigation
-- Zoom functionality
-
-### Phase 2: Customization (3 weeks)
-- Theming system
-- Branding options
-- Color customization
-
-### Phase 3: Advanced Features (4 weeks)
-- Annotations
-- Search
-- Export/Share
-
-### Phase 4: Polish (2 weeks)
-- Performance optimization
-- Testing
-- Documentation
-
-## 14. Dependencies
-
-### Required Libraries
-```gradle
-- androidx.core:core-ktx
-- androidx.appcompat:appcompat
-- com.github.barteksc:android-pdf-viewer (or PDFium)
-- kotlinx.coroutines
-- androidx.lifecycle
+```kotlin
+PdfViewer.with(context)
+    .load(pdfUri)
+    .setOnPageChangeListener { page, pageCount ->
+        Log.d("PDF", "Page $page of $pageCount")
+    }
+    .setOnLoadCompleteListener { pages ->
+        Log.d("PDF", "Loaded $pages pages")
+    }
+    .setOnErrorListener { error ->
+        Log.e("PDF", "Error: ${error.message}")
+    }
+    .show()
 ```
 
-### Optional Libraries
-```gradle
-- Hilt/Dagger2 (DI)
-- Glide/Coil (Image loading)
-- Room (Caching)
-- WorkManager (Background tasks)
+## Features
+
+### Core Features
+- ✅ PDF rendering with PdfRenderer API
+- ✅ Smooth scrolling and zooming
+- ✅ Page navigation (swipe, buttons, slider)
+- ✅ Thumbnail grid view
+- ✅ Search functionality
+- ✅ Text selection and copy
+- ✅ Bookmark support
+
+### Customization
+- ✅ Custom branding (logos, titles, watermarks)
+- ✅ Theming support (colors, fonts, styles)
+- ✅ Header/footer customization
+- ✅ Page indicator styles
+- ✅ Navigation bar customization
+
+### Advanced Features
+- ✅ Data overlay on pages
+- ✅ PDF generation from Compose
+- ✅ Export pages as images
+- ✅ Share functionality
+- ✅ Download from URL
+- ✅ Password-protected PDFs
+- ✅ Night mode support
+
+## Requirements
+
+- **Min SDK**: 21 (Android 5.0 Lollipop)
+- **Target SDK**: 34 (Android 14)
+- **Kotlin**: 1.9.0+
+- **Compose BOM**: 2024.02.00+
+
+## Contributing
+
+We welcome contributions! Here's how you can help:
+
+### How to Contribute
+
+1. **Fork the Repository**
+   ```bash
+   git clone https://github.com/yourusername/AdaptivePdfPro.git
+   cd AdaptivePdfPro
+   ```
+
+2. **Create a Feature Branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+3. **Make Your Changes**
+   - Follow the existing code style
+   - Add/update tests as needed
+   - Update documentation if required
+
+4. **Test Your Changes**
+   ```bash
+   ./gradlew test
+   ./gradlew connectedAndroidTest
+   ```
+
+5. **Commit Your Changes**
+   ```bash
+   git add .
+   git commit -m "feat: Add your feature description"
+   ```
+   
+   Follow conventional commits:
+   - `feat:` New feature
+   - `fix:` Bug fix
+   - `docs:` Documentation changes
+   - `style:` Code style changes
+   - `refactor:` Code refactoring
+   - `test:` Test additions/changes
+   - `chore:` Maintenance tasks
+
+6. **Push and Create Pull Request**
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+   Then create a Pull Request on GitHub.
+
+### Development Setup
+
+1. Clone the repository
+2. Open in Android Studio (Arctic Fox or newer)
+3. Sync project with Gradle files
+4. Run the sample app to test changes
+
+### Code Style
+
+- Use Kotlin coding conventions
+- Follow MVVM architecture pattern
+- Write meaningful commit messages
+- Add KDoc comments for public APIs
+- Ensure code passes lint checks
+
+### Reporting Issues
+
+- Use GitHub Issues to report bugs
+- Provide detailed reproduction steps
+- Include device/OS information
+- Attach relevant logs or screenshots
+
+## License
+
+```
+MIT License
+
+Copyright (c) 2024 AdaptivePdfPro
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
 
-## 15. Success Metrics
+## Support
 
-- Rendering performance (< 100ms per page)
-- Memory usage (< 50MB for typical PDF)
-- Crash rate (< 0.1%)
-- API ease of use (developer survey)
-- Feature completeness
-- Documentation quality
+For support, please:
+- Check the [documentation](https://github.com/yourusername/AdaptivePdfPro/wiki)
+- Search [existing issues](https://github.com/yourusername/AdaptivePdfPro/issues)
+- Create a new issue if needed
+
+## Acknowledgments
+
+This library uses:
+- Android PDF Renderer API
+- Jetpack Compose
+- Kotlin Coroutines
+- AndroidX Libraries
