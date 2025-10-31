@@ -21,7 +21,7 @@ class PdfConfigTest {
         val config = PdfConfig.build {
             load("https://example.com/test.pdf")
             setBranding {
-                logo(resId = android.R.drawable.ic_dialog_info, position = LogoPosition.TOP_LEFT)
+                logo(resId = 123456, position = LogoPosition.TOP_LEFT) // Using dummy resource ID for testing
                 title("Test Document", color = 0xFF000000.toInt())
                 subtitle("Test Subtitle")
                 watermark("CONFIDENTIAL")
@@ -117,7 +117,7 @@ class PdfConfigTest {
     @Test
     fun `test BrandingConfig builder`() {
         val branding = BrandingConfig.Builder().apply {
-            logo(resId = android.R.drawable.ic_dialog_info, size = LogoSize.LARGE)
+            logo(resId = 789012, size = LogoSize.LARGE) // Using dummy resource ID for testing
             title("My Document", color = 0xFF000000.toInt(), isBold = true)
             watermark("DRAFT", opacity = 0.3f)
             header(text = "Header Text", showPageNumber = true)
