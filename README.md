@@ -1,5 +1,7 @@
 # AdaptivePdfPro
 
+[![](https://jitpack.io/v/Sammug/Adaptive-Pdf-Pro.svg)](https://jitpack.io/#Sammug/Adaptive-Pdf-Pro)
+
 A comprehensive Android library for PDF viewing, generation, and manipulation with extensive customization options including branding, theming, navigation, and data overlay features.
 
 ## About
