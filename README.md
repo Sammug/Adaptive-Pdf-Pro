@@ -43,7 +43,7 @@ Add the dependency to your app module's `build.gradle`:
 
 ```gradle
 dependencies {
-    implementation 'com.github.yourusername:AdaptivePdfPro:1.0.0'
+    implementation 'com.github.Sammug:Adaptive-Pdf-Pro:1.0.0'
 }
 ```
 
@@ -229,8 +229,8 @@ We welcome contributions! Here's how you can help:
 
 1. **Fork the Repository**
    ```bash
-   git clone https://github.com/yourusername/AdaptivePdfPro.git
-   cd AdaptivePdfPro
+   git clone https://github.com/Sammug/Adaptive-Pdf-Pro.git
+   cd Adaptive-Pdf-Pro
    ```
 
 2. **Create a Feature Branch**
@@ -321,8 +321,8 @@ SOFTWARE.
 ## Support
 
 For support, please:
-- Check the [documentation](https://github.com/yourusername/AdaptivePdfPro/wiki)
-- Search [existing issues](https://github.com/yourusername/AdaptivePdfPro/issues)
+- Check the [documentation](https://github.com/Sammug/Adaptive-Pdf-Pro/wiki)
+- Search [existing issues](https://github.com/Sammug/Adaptive-Pdf-Pro/issues)
 - Create a new issue if needed
 
 ## Acknowledgments

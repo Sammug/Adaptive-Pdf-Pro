@@ -102,14 +102,14 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 
-                groupId = 'com.github.sammug'
-                artifactId = 'adaptivepdfpro'
+                groupId = 'com.github.Sammug'
+                artifactId = 'adaptive-pdf-pro'
                 version = '1.0.0'
                 
                 pom {
                     name = 'AdaptivePdfPro'
                     description = 'A comprehensive Android library for PDF viewing with extensive customization, branding, and data-driven generation capabilities'
-                    url = 'https://github.com/sammug/AdaptivePdfPro'
+                    url = 'https://github.com/Sammug/Adaptive-Pdf-Pro'
                     
                     licenses {
                         license {
@@ -127,9 +127,9 @@ afterEvaluate {
                     }
                     
                     scm {
-                        connection = 'scm:git:git://github.com/sammug/AdaptivePdfPro.git'
-                        developerConnection = 'scm:git:ssh://github.com:sammug/AdaptivePdfPro.git'
-                        url = 'https://github.com/sammug/AdaptivePdfPro/tree/main'
+                        connection = 'scm:git:git://github.com/Sammug/Adaptive-Pdf-Pro.git'
+                        developerConnection = 'scm:git:ssh://github.com:Sammug/Adaptive-Pdf-Pro.git'
+                        url = 'https://github.com/Sammug/Adaptive-Pdf-Pro/tree/main'
                     }
                 }
             }
