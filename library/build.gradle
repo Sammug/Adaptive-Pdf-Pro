@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.androidstuff.adaptivepdfpro'
-    compileSdk 36
+    compileSdk 35
 
     defaultConfig {
         minSdk 27
@@ -40,8 +40,8 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.17.0'
-    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.13.0'
     
     // PDF functionality using Android built-in APIs

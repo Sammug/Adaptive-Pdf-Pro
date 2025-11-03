@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.androidstuff.adaptivepdfpro.sample'
-    compileSdk 36
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.androidstuff.adaptivepdfpro.sample"
         minSdk 27
-        targetSdk 36
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 
@@ -47,8 +47,8 @@ dependencies {
     // Local library dependency
     implementation project(':library')
     
-    implementation 'androidx.core:core-ktx:1.17.0'
-    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.13.0'
     
     // Lifecycle components
