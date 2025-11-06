@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.androidstuff.adaptivepdfpro.library-release-63:/layout-v26/abc_screen_toolbar.xml",
+        "source": "com.androidstuff.adaptivepdfpro.library-appcompat-1.7.1-39:/layout-v26/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "com.androidstuff.adaptivepdfpro.library-release-63:/layout-v26/mtrl_calendar_month.xml",
+        "source": "com.androidstuff.adaptivepdfpro.library-material-1.13.0-47:/layout-v26/mtrl_calendar_month.xml"
+    }
+]

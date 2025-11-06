@@ -104,6 +104,7 @@ fun PdfReportGenerator(
     data: PdfContentData,
     modifier: Modifier = Modifier,
     documentStyle: PdfDocumentStyle = PdfDocumentStyle(),
+    applyLibraryTheme: Boolean = false,
     onPdfGenerated: ((File) -> Unit)? = null,
     onError: ((Throwable) -> Unit)? = null
 ) {
@@ -113,7 +114,7 @@ fun PdfReportGenerator(
     val generationProgress by viewModel.generationProgress.collectAsState()
     val generatedFile by viewModel.generatedPdfFile.collectAsState()
 
-    AdaptivePdfTheme(themeConfig = ThemeConfig.default()) {
+    val content = @Composable {
         Column(
             modifier = modifier
                 .fillMaxSize()
@@ -160,6 +161,14 @@ fun PdfReportGenerator(
                 )
             }
         }
+    }
+    
+    if (applyLibraryTheme) {
+        AdaptivePdfTheme(themeConfig = ThemeConfig.default()) {
+            content()
+        }
+    } else {
+        content()
     }
 }
 

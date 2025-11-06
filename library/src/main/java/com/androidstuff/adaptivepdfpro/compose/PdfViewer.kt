@@ -143,7 +143,7 @@ fun PdfViewer(
         }
     }
     
-    AdaptivePdfTheme(themeConfig = config.themeConfig) {
+    val content = @Composable {
         Box(
             modifier = modifier
                 .fillMaxSize()
@@ -228,6 +228,14 @@ fun PdfViewer(
                 }
             }
         }
+    }
+    
+    if (config.viewerConfig.applyLibraryTheme) {
+        AdaptivePdfTheme(themeConfig = config.themeConfig) {
+            content()
+        }
+    } else {
+        content()
     }
 }
 

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.androidstuff.adaptivepdfpro.library-release-63:/layout-v21/notification_template_icon_group.xml",
+        "source": "com.androidstuff.adaptivepdfpro.library-core-1.17.0-17:/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "com.androidstuff.adaptivepdfpro.library-release-63:/layout-v21/notification_template_custom_big.xml",
+        "source": "com.androidstuff.adaptivepdfpro.library-core-1.17.0-17:/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "com.androidstuff.adaptivepdfpro.library-release-63:/layout-v21/notification_action.xml",
+        "source": "com.androidstuff.adaptivepdfpro.library-core-1.17.0-17:/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "com.androidstuff.adaptivepdfpro.library-release-63:/layout-v21/notification_action_tombstone.xml",
+        "source": "com.androidstuff.adaptivepdfpro.library-core-1.17.0-17:/layout-v21/notification_action_tombstone.xml"
+    }
+]

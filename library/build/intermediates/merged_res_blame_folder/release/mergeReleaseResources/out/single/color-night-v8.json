@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.androidstuff.adaptivepdfpro.library-release-63:/color-night-v8/material_timepicker_clockface.xml",
+        "source": "com.androidstuff.adaptivepdfpro.library-material-1.13.0-47:/color-night-v8/material_timepicker_clockface.xml"
+    },
+    {
+        "merged": "com.androidstuff.adaptivepdfpro.library-release-63:/color-night-v8/material_timepicker_modebutton_tint.xml",
+        "source": "com.androidstuff.adaptivepdfpro.library-material-1.13.0-47:/color-night-v8/material_timepicker_modebutton_tint.xml"
+    },
+    {
+        "merged": "com.androidstuff.adaptivepdfpro.library-release-63:/color-night-v8/material_timepicker_button_stroke.xml",
+        "source": "com.androidstuff.adaptivepdfpro.library-material-1.13.0-47:/color-night-v8/material_timepicker_button_stroke.xml"
+    }
+]

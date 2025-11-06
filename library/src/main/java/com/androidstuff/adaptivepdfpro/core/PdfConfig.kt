@@ -193,7 +193,8 @@ data class ViewerConfig(
     val showPageNumbers: Boolean = true,
     val defaultPage: Int = 0,
     val swipeHorizontal: Boolean = false,
-    val scrollHandle: Boolean = true
+    val scrollHandle: Boolean = true,
+    val applyLibraryTheme: Boolean = false
 ) : Parcelable {
     enum class FitPolicy {
         WIDTH, HEIGHT, BOTH
@@ -221,6 +222,7 @@ data class ViewerConfig(
         private var defaultPage = 0
         private var swipeHorizontal = false
         private var scrollHandle = true
+        private var applyLibraryTheme = false
 
         fun enableZoom(enable: Boolean) = apply { enableZoom = enable }
         fun setZoomLevels(min: Float, mid: Float, max: Float) = apply {
@@ -247,12 +249,13 @@ data class ViewerConfig(
         fun defaultPage(page: Int) = apply { defaultPage = page }
         fun swipeHorizontal(horizontal: Boolean) = apply { swipeHorizontal = horizontal }
         fun scrollHandle(show: Boolean) = apply { scrollHandle = show }
+        fun applyLibraryTheme(apply: Boolean) = apply { applyLibraryTheme = apply }
 
         fun build() = ViewerConfig(
             enableZoom, minZoom, midZoom, maxZoom, enableDoubleTap, enableSwipe,
             enableAnnotationRendering, enableAntialiasing, enablePassword, password,
             spacing, autoSpacing, pageFitPolicy, fitEachPage, pageFling, pageSnap,
-            nightMode, showPageNumbers, defaultPage, swipeHorizontal, scrollHandle
+            nightMode, showPageNumbers, defaultPage, swipeHorizontal, scrollHandle, applyLibraryTheme
         )
     }
 }
